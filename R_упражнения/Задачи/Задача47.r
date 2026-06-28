@@ -1,0 +1,23 @@
+# в problems_v8.pdf това е 60та задача
+
+Nrep <- 1000
+
+# a) 
+for (n in c(3, 7, 10, 30, 90, 200)) {
+  
+  xsum <- replicate( Nrep, sum( rexp(n, 1/5) ) )
+  # чертае нашата графика а past("n =", n) просто пише как би изглеждало
+  hist(xsum)
+}
+
+# б)
+for (n in c(3, 7, 10, 30, 90, 200)) {
+  
+  xsum <- replicate( Nrep, sum( rexp(n, 1/5) ) )
+  
+  # трябва да начертаем емпиричната функция на разпределение на сумите.
+  plot.ecdf(xsum, col="green")
+
+  # чертаем функцията на разпределение
+  curve( pnorm(x, 5*n, 5*sqrt(n)), add=T, col="coral")
+}
