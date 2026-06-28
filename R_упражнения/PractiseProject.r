@@ -1,13 +1,14 @@
 # Имаме експеримент с монета 
 
-# H0: p = 1/2
-# H1: p > 1/2
+Nrep <- 1000
 
-n <- 100
-x <- 58
-p <- 1/2
+for(n in c(3,7,10,30,90,200)) {
+    xsum <- replicate(Nrep, sum(rpois(n, 3)))
+    hist(xsum)
+}
 
-z.porc <- (x/n - p) / (sqrt(p*(1-p)*(1/n)))
-p.value <- 1 - pnorm(z.porc)
-
-print(p.value)
+for(n in c(3,7,10,30,90,200)) {
+    xsum <- replicate(Nrep, sum(rpois(n,3)))
+    plot.ecdf(xsum, lwd=2, col="black")
+    curve(pnorm(x, 3*x, ))
+}
