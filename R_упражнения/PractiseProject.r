@@ -1,14 +1,12 @@
-# Имаме експеримент с монета 
 
-Nrep <- 1000
+mu <- 6.7 
+sigma <- 0.12
 
-for(n in c(3,7,10,30,90,200)) {
-    xsum <- replicate(Nrep, sum(rpois(n, 3)))
-    hist(xsum)
-}
+n <- 45
 
-for(n in c(3,7,10,30,90,200)) {
-    xsum <- replicate(Nrep, sum(rpois(n,3)))
-    plot.ecdf(xsum, lwd=2, col="black")
-    curve(pnorm(x, 3*x, ))
-}
+# H0 = 6.7
+# H1 != 6.7
+
+z.obs <- (H0 - mu) / (sigma * sqrt(n))
+
+p.value <- 2 * (1-pnorm(abs(z.obs)))
